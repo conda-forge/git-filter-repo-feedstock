@@ -16,22 +16,3 @@
  [bdist_wheel]
  universal = 1
 
---- git_filter_repo.py  2020-10-18 01:07:18.000000000 +0100
-+++ git_filter_repo.py  2021-01-07 12:45:25.310000000 +0000
-@@ -3940,11 +3940,14 @@
-     print(_("Completely finished after {:.2f} seconds.")
-           .format(time.time()-start))
-
--if __name__ == '__main__':
-+def main(args=sys.argv[1:]):
-   setup_gettext()
--  args = FilteringOptions.parse_args(sys.argv[1:])
-+  args = FilteringOptions.parse_args(args)
-   if args.analyze:
-     RepoAnalyze.run(args)
-   else:
-     filter = RepoFilter(args)
-     filter.run()
-+
-+if __name__ == '__main__':
-+  main()

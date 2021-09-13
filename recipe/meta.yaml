@@ -10,12 +10,14 @@ source:
     sha256: 4eb8d0774f06ce56995507f1cd59d3f684d13cd09db2fe6fe12766b47d69aedb
     patches:
       - entry-points.patch
-  - url: https://github.com/newren/git-filter-repo/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.xz  # [not win]
-    sha256: 7bcf11da134bbd82a4171f7fb28a3ab7bc4d478fe8ec3a3d9580e4bbdc32e6e9  # [not win]
-    fn: {{ name }}-github-{{ version }}.tar.xz  # [not win]
-    folder: orig  # [not win]
+  - url: https://github.com/newren/git-filter-repo/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.xz
+    sha256: 7bcf11da134bbd82a4171f7fb28a3ab7bc4d478fe8ec3a3d9580e4bbdc32e6e9
+    fn: {{ name }}-github-{{ version }}.tar.xz
+    folder: orig
 
 build:
+  entry-points:
+    - git-filter-repo = git_filter_repo:main
   noarch: python
   number: 0
 
@@ -23,6 +25,7 @@ requirements:
   host:
     - pip
     - python >=3.5
+    - setuptools
     - setuptools_scm
   run:
     - git >=2.26.0
@@ -31,11 +34,12 @@ requirements:
 test:
   requires:
     - pip
-  imports:
-    - git_filter_repo
   commands:
-    - pip check
+    # check requirements
+    - python -m pip check
+    # check entry point
     - git-filter-repo --version
+    # check git integration
     - git filter-repo --version
 
 about:
