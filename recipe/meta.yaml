@@ -16,7 +16,7 @@ source:
     folder: orig
 
 build:
-  entry-points:
+  entry_points:
     - git-filter-repo = git_filter_repo:main
   noarch: python
   number: 0
