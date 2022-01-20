@@ -1,5 +1,5 @@
 {% set name = "git-filter-repo" %}
-{% set version = "2.33.0" %}
+{% set version = "2.34.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 4eb8d0774f06ce56995507f1cd59d3f684d13cd09db2fe6fe12766b47d69aedb
+    sha256: b5a09f383865de0a164b06ba174461e55d9167cc6fbb06cf2a1e62dbf0cdba63
     patches:
       - entry-points.patch
   - url: https://github.com/newren/git-filter-repo/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.xz
-    sha256: 7bcf11da134bbd82a4171f7fb28a3ab7bc4d478fe8ec3a3d9580e4bbdc32e6e9
+    sha256: b1bf46af1e6a91a54056d0254e480803db8e40f631336c559a1a94d2a08389c4
     fn: {{ name }}-github-{{ version }}.tar.xz
     folder: orig
 
