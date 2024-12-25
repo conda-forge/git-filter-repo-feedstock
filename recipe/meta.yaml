@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
     sha256: fe1753e18f0bd6d3c9b57868c8011ae7d056a6ebab706706396a15ef5312725e
     patches:
       - entry-points.patch
@@ -19,21 +19,22 @@ build:
   entry_points:
     - git-filter-repo = git_filter_repo:main
   noarch: python
-  number: 0
+  number: 1
 
 requirements:
   host:
     - pip
-    - python >=3.5
+    - python {{ python_min }}
     - setuptools
     - setuptools_scm
   run:
     - git >=2.26.0
-    - python >=3.5
+    - python >={{ python_min }}
 
 test:
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     # check requirements
     - python -m pip check
